@@ -28,5 +28,7 @@ public class MyWorld extends World
     {
         Boat boat = new Boat();
         addObject(boat,203,132);
+        Dolphin dolphin = new Dolphin();
+        addObject(dolphin,269,157);
     }
 }
