@@ -27,8 +27,10 @@ public class MyWorld extends World
     private void prepare()
     {
         Boat boat = new Boat();
-        addObject(boat,203,132);
+        addObject(boat,136,142);
         Dolphin dolphin = new Dolphin();
-        addObject(dolphin,269,157);
+        addObject(dolphin,300,81);
+        Platform platform = new Platform();
+        addObject(platform,350,280);
     }
 }
