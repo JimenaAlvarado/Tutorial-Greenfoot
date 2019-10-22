@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Platform extends Actor
 {
     public Platform(){
-        this(100, 25);
+        this(100, 45);
     }
     
     public Platform(int width, int height)

@@ -28,21 +28,29 @@ public class Dolphin extends Actor
     public void fall()
     {
         setLocation(getX(), getY() + velocity);
-        if (isOnSolidGround()) velocity = 0;
+        if (isOnSolidGround())
+        {
+            velocity = 0;
+            while( isOnSolidGround() )
+            {
+                setLocation(getX(), getY() - 1);
+            }
+            setLocation(getX(), getY() + 1);
+        }
         else if (velocity < 0 && didBumpHeah()) velocity = 0;
         else velocity += GRAVITY;
     }
     
     public void jump()
     {
-        velocity = -10;
+        velocity = -15;
     }
     
     public void move()
     {
         int x = getX(), y = getY();
-        if(Greenfoot.isKeyDown("left")) x--;
-        if(Greenfoot.isKeyDown("right")) x++;
+        if(Greenfoot.isKeyDown("left") && canMoveLeft() ) x-=3;
+        if(Greenfoot.isKeyDown("right") && canMoveRight() ) x+=3;
         setLocation(x, y);
     }   
     
@@ -69,5 +77,29 @@ public class Dolphin extends Actor
             bumpedHead = true;
          
         return bumpedHead;
+    }
+    
+    public boolean canMoveLeft()
+    {
+        boolean moveLeft = true; 
+        int imageWidth = getImage().getWidth(); 
+        int imageHeight = getImage().getHeight(); 
+        if (getOneObjectAtOffset((imageWidth / -2) - 3, imageHeight / -2, Platform.class) != null || 
+            getOneObjectAtOffset((imageWidth / -2) - 3, (imageHeight / 2) - 1, Platform.class) != null) 
+            moveLeft = false; 
+       
+        return moveLeft;
+    }
+    
+    public boolean canMoveRight()
+    { 
+        boolean moveRight = true; 
+        int imageWidth = getImage().getWidth(); 
+        int imageHeight = getImage().getHeight(); 
+        if (getOneObjectAtOffset((imageWidth / 2) + 3, imageHeight / -2, Platform.class) != null || 
+            getOneObjectAtOffset((imageWidth / 2) + 3, (imageHeight / 2) - 1, Platform.class) != null) 
+            moveRight = false; 
+          
+        return moveRight; 
     }
 }
